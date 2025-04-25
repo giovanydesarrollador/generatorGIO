@@ -1,0 +1,60 @@
+body { font-family: sans-serif; padding: 20px; }
+form{display: flex; flex-direction: column; align-items: center;}
+.container { 
+    max-width: 500px;
+     margin: auto; 
+     border: 1px solid #ccc;
+      padding: 20px; 
+      border-radius: 8px; 
+     background: linear-gradient(45deg, white, #cccccc, white);
+      text-align: center;
+      box-shadow: 0px 5px 2px rgba(0, 128, 0, 0.444);
+    }
+button.submit { padding: 10px 15px; 
+    font-size: 1em; 
+    cursor: pointer; 
+    background: rgb(46, 183, 46); 
+    color: white; 
+    font-weight: 700;
+    border-radius: 7px;
+    transition: .3s;
+}
+button.submit:hover{
+    background: rgb(255, 255, 255); 
+    color: black;
+    scale: 1.02;
+}
+button.copy { padding: 0px; font-size: 1em; cursor: pointer; background: transparent; font-weight: 700; border: none; 
+    display: flex;
+    align-items: center;
+}
+button.copy svg{
+    fill: #1e1e1e;
+    width: 18px;
+    transition: .3s;
+}
+button.copy svg:hover{
+   scale: 1.05;
+}
+.result { margin-top: 20px; padding: 15px; border: 1px dashed #ddd; background-color: #f9f9f9; word-wrap: break-word; }
+.message { margin-top: 10px; font-weight: bold; }
+.success { color: green; }
+.error { color: red; }
+html{
+    background: #1e1e1e;
+}
+.password_text{
+    font-size: 20px;
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.copy_success{
+    color: green;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    transition: .2s;
+    opacity: 0;
+}

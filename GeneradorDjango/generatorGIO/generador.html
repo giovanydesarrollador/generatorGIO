@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Contraseñas</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .container { max-width: 500px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+        button { padding: 10px 15px; font-size: 1em; cursor: pointer; }
+        .result { margin-top: 20px; padding: 15px; border: 1px dashed #ddd; background-color: #f9f9f9; word-wrap: break-word; }
+        .message { margin-top: 10px; font-weight: bold; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generador de Contraseñas Únicas (Django)</h1>
+        <p>Haz clic en el botón para generar una nueva contraseña de 11 caracteres (máximo 3 números) y guardarla si es única.</p>
+
+        <form method="post">
+            {% csrf_token %} {# ¡Importante para la seguridad de Django! #}
+            <button type="submit">Generar Nueva Contraseña</button>
+        </form>
+
+        {# Muestra la contraseña generada si existe #}
+        {% if new_password %}
+            <div class="result">
+                <h2>Nueva Cadena Generada:</h2>
+                <p style="font-size: 1.2em; font-family: monospace;">{{ new_password }}</p>
+            </div>
+        {% endif %}
+
+        {# Muestra mensajes de estado/error #}
+        {% if message %}
+            <div class="message {% if new_password %}success{% else %}error{% endif %}">
+                <p>{{ message }}</p>
+            </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

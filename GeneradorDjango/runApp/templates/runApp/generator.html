@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Contraseñas</title>
+    <link rel="stylesheet" href="{% static 'runApp/styles/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Generar Cadenas</h1>
+        <p>Haz clic en el botón para generar una nueva cadena de 10</p>
+
+        <form method="post">
+            {% csrf_token %} {# ¡Importante para la seguridad de Django! #}
+            <button class="submit" type="submit">Generar Nueva Cadena</button>
+        </form>
+
+        {# Muestra la contraseña generada si existe #}
+        {% if new_password %}
+            <div class="result">
+                <h2>Nueva Cadena Generada:</h2>
+                <p class="password_text">{{ new_password }}
+                    <button onclick="myFunction(`{{ new_password }}`)" class="copy"><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>
+                    <br>
+                    
+                    </button>
+                </p>
+                <div id="copy_success" class="copy_success">Copiado con Exito!!</div>
+            </div>
+        {% endif %}
+
+        {# Muestra mensajes de estado/error #}
+        {% if message %}
+            <div class="message {% if new_password %}success{% else %}error{% endif %}">
+                <p>{{ message }}</p>
+            </div>
+        {% endif %}
+
+    </div>
+
+    <script>
+        function myFunction(pass) {
+        document.getElementById("copy_success").style.opacity = "0";
+        navigator.clipboard.writeText(pass);
+            setTimeout(() => {
+                document.getElementById("copy_success").style.opacity = "1";
+            }, 100);
+        }
+    </script>
+
+</body>
+</html>
